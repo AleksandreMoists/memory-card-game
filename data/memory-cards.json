@@ -1,0 +1,62 @@
+[
+    {
+        "name": "cpu",
+        "image": "assets/cpu-z-svgrepo-com.svg"
+    },
+    {
+        "name": "gpu",
+        "image": "assets/gpu-svgrepo-com.svg"
+    },
+    {
+        "name": "ram",
+        "image": "assets/tech-ram-svgrepo-com.svg"
+    },
+    {
+        "name": "ssd",
+        "image": "assets/ssd-square-svgrepo-com.svg"
+    },
+    {
+        "name": "motherboard",
+        "image": "assets/motherboard-svgrepo-com.svg"
+    },
+    {
+        "name": "power-supply",
+        "image": "assets/power-supply-one-svgrepo-com.svg"
+    },
+    {
+        "name": "cooler",
+        "image": "assets/cooler-svgrepo-com.svg"
+    },
+    {
+        "name": "monitor",
+        "image": "assets/monitor-svgrepo-com.svg"
+    },
+    {
+        "name": "keyboard",
+        "image": "assets/keyboard-svgrepo-com.svg"
+    },
+    {
+        "name": "mouse",
+        "image": "assets/mouse-svgrepo-com.svg"
+    },
+    {
+        "name": "headset",
+        "image": "assets/headset-alt-svgrepo-com.svg"
+    },
+    {
+        "name": "gamepad",
+        "image": "assets/gamepad-svgrepo-com.svg"
+    },
+    {
+        "name": "webcam",
+        "image": "assets/webcam-svgrepo-com.svg"
+    },
+    {
+        "name": "microphone",
+        "image": "assets/microphone-svgrepo-com.svg"
+    },
+    {
+        "name": "speaker",
+        "image": "assets/speaker-svgrepo-com.svg"
+    }
+]

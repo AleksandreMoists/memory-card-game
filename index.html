@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Games</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ======================= -->
+    <!-- HEADER SECTION          -->
+    <!-- ======================= -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <!-- <img src="assets/images/logo.png" alt="Cyber Brain Logo" class="logo"> -->
+                <span class="logo-title">MEMORY GAME</span> <!-- This title can be dynamic with JS -->
+            </div>
+
+            <nav class="game-navigation">
+                <a href="#" id="nav-memory" class="nav-link active">MEMORY GAME</a>
+                <a href="#" id="nav-shell" class="nav-link">SHELL GAME</a>
+            </nav>
+
+            <div class="stats-and-controls">
+                <div class="stats-display">
+                    <span>Tries: <span id="tries-count">0</span></span>
+                    <span>Score: <span id="score-count">0</span></span>
+                </div>
+                <button id="main-action-button" class="btn">Restart Game</button>
+                <button id="settings-button" class="btn-icon">
+                    <!-- You can use an <img> or an inline SVG for the settings icon -->
+                    <!-- <img src="assets/icons/icon-settings.svg" alt="Settings"> -->
+                </button>
+            </div>
+            
+            <!-- Burger menu button for mobile -->
+            <button id="burger-menu" class="burger-menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile navigation menu (initially hidden) -->
+        <nav id="mobile-nav" class="mobile-navigation">
+             <!-- Mobile nav links will be similar to the desktop ones -->
+        </nav>
+    </header>
+
+    <!-- ======================= -->
+    <!-- MAIN CONTENT AREA       -->
+    <!-- ======================= -->
+    <main>
+        <!-- Difficulty Selector -->
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" data-difficulty="easy">EASY</button>
+            <button class="difficulty-btn" data-difficulty="medium">MEDIUM</button>
+            <button class="difficulty-btn" data-difficulty="hard">HARD</button>
+        </div>
+
+        <!-- Memory Game Container -->
+        <div id="memory-game-container" class="game-board">
+            <!-- The memory cards will be generated here by memory-game.js -->
+        </div>
+
+        <!-- Shell Game Container (initially hidden by CSS) -->
+        <div id="shell-game-container" class="game-board hidden">
+            <div class="shell-game-area">
+                <!-- The shell "cups" will be here -->
+                <div class="shell"></div>
+                <div class="shell"></div>
+                <div class="shell"></div>
+            </div>
+            <p id="shell-game-message">Click "Start Shuffle" to begin!</p>
+        </div>
+    </main>
+
+    <!-- JavaScript files linked at the end -->
+    <script src="js/memory-game.js"></script>
+    <script src="js/shell-game.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

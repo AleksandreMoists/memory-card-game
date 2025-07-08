@@ -1,0 +1,127 @@
+/* ======================= */
+/* 1. SETUP & VARIABLES    */
+/* ======================= */
+:root {
+    /* Colors - take these from your Figma design! */
+    --background-color: #0d1a2d;
+    --primary-text-color: #ffffff;
+    --dimmed-text-color: #8899a6;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --card-bg: #1a1a2e;
+
+    /* Fonts */
+    --primary-font: 'VT323', monospace; /* Make sure to import this from Google Fonts */
+}
+
+/* Basic Reset & Body Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    font-family: var(--primary-font);
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ======================= */
+/* 2. HEADER STYLES        */
+/* ======================= */
+.site-header {
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--neon-cyan);
+    /* Add styles for sticky header state here later */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-navigation .nav-link {
+    color: var(--dimmed-text-color);
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.game-navigation .nav-link.active,
+.game-navigation .nav-link:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* ... more header styles for stats, buttons, etc. */
+
+
+/* ======================= */
+/* 3. GAME BOARD STYLES    */
+/* ======================= */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default for Medium */
+    gap: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* Styles for a single memory card */
+.memory-card {
+    width: 150px;
+    height: 150px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--neon-magenta);
+    border-radius: 10px;
+    cursor: pointer;
+    /* Styles for the flip animation will go here */
+}
+
+/* ... more styles for shell game, difficulty buttons, etc. */
+
+
+/* ======================= */
+/* 4. ANIMATIONS & HOVER   */
+/* ======================= */
+.btn:hover {
+    background-color: var(--neon-cyan);
+    color: var(--background-color);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+@keyframes card-match-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px var(--neon-cyan); }
+    100% { transform: scale(1); }
+}
+
+
+/* ======================= */
+/* 5. RESPONSIVE (MOBILE)  */
+/* ======================= */
+@media (max-width: 420px) {
+    /* Add mobile-specific styles here */
+    .game-board {
+        grid-template-columns: repeat(2, 1fr); /* Example: 2 columns on mobile */
+        padding: 20px;
+    }
+
+    .header-container .game-navigation,
+    .header-container .stats-and-controls {
+        display: none; /* Hide desktop nav on mobile */
+    }
+
+    .header-container .burger-menu-button {
+        display: flex; /* Show burger menu */
+    }
+}
