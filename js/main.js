@@ -36,9 +36,17 @@ window.addEventListener('scroll', () => {
 });
 
 
+function enableDifficultyButtons() {
+    difficultyButtons.forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('disabled');
+    });
+}
+
 function switchGame(game) {
     currentGame = game;
     if (game === 'memory') {
+        enableDifficultyButtons();
         memoryGameContainer.classList.remove('hidden');
         shellGameContainer.classList.add('hidden');
         
@@ -94,7 +102,7 @@ mainActionButton.addEventListener('click', () => {
     if (currentGame === 'memory') {
         initMemoryGame(currentDifficulty);
     } else if (currentGame === 'shell') {
-        initShellGame(currentDifficulty);
+        startShellShuffle();
     }
 });
 

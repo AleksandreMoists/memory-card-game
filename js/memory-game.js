@@ -58,6 +58,12 @@ function setupGame(difficulty = 'medium') {
     matchedPairs = 0;
     moves = 0;
     gameStarted = false;
+
+    // Reset timer and UI
+    clearInterval(gameTimer);
+    gameTime = 0;
+    updateMoves();
+    updateTimer();
     
     // Set difficulty data attribute for CSS styling
     const gameContainer = document.getElementById('memory-game-container');
@@ -169,6 +175,10 @@ function startTimer() {
         gameTime++;
         updateTimer();
     }, 1000);
+    if (resetGame) {
+        gameTime = 0;
+        updateTimer();
+    }
 }
 
 function updateTimer() {
