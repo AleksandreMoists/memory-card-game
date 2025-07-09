@@ -106,6 +106,28 @@ mainActionButton.addEventListener('click', () => {
     }
 });
 
+// Mobile navigation functionality
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+// Add click events to mobile nav links
+mobileNavLinks.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Switch to the appropriate game (first link is Memory Game, second is Shell Game)
+        if (index === 0) {
+            switchGame('memory');
+        } else if (index === 1) {
+            switchGame('shell');
+        }
+        
+        // Close the mobile menu
+        mobileNav.classList.remove('active');
+        header.classList.remove('active');
+        burgerMenuButton.classList.remove('active');
+    });
+});
+
 function initializeApp() {
     switchGame('memory'); // Start with the memory game by default
     difficultyButtons.forEach(button => {

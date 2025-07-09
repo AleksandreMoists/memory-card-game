@@ -68,6 +68,11 @@ async function startShellShuffle() {
     shellGameMessage.textContent = 'Watch carefully...';
 
     // 1. Create the ball
+    if (ball) {
+        // Remove existing ball if it exists
+        ball.remove();
+    }
+    
     ball = document.createElement('div');
     ball.className = 'shell-ball';
     ball.style.opacity = '1'; // Make sure ball is visible when showing
@@ -112,22 +117,39 @@ function handleCupClick(event) {
 
     // Lift the chosen cup first
     clickedCup.classList.add('lifted');
+    
+    // Always make sure the ball is correctly positioned under the winning cup
+    const winningCup = cups[winningCupIndex];
+    const cupLeft = parseInt(winningCup.style.left);
+    ball.style.left = `${cupLeft + 40}px`; // Re-position ball to ensure it's in the right place
 
     if (clickedIndex === winningCupIndex) {
-        // Ball is already positioned correctly under the winning cup
+        // Show the ball
         ball.style.opacity = 1;
         shellGameMessage.textContent = 'Correct! You win!';
         // Optional: Add a winning glow effect
     } else {
         shellGameMessage.textContent = 'Wrong! Try again.';
         // Also lift the correct cup to show the user where it was
-        cups[winningCupIndex].classList.add('lifted');
+        winningCup.classList.add('lifted');
         // Make sure ball is visible under the correct cup
         ball.style.opacity = 1;
     }
 }
 
+// Make sure the ball is synchronized with the winning cup
+function syncBallPosition() {
+    if (ball && winningCupIndex >= 0) {
+        const winningCup = cups[winningCupIndex];
+        const cupLeft = parseInt(winningCup.style.left);
+        ball.style.left = `${cupLeft + 40}px`;
+    }
+}
+
 async function shuffleAnimation() {
+    // Make sure ball is perfectly positioned before starting shuffles
+    syncBallPosition();
+    
     // Perform a series of random swaps
     for (let i = 0; i < 10; i++) { // 10 shuffles
         // Pick two different random cups to swap
@@ -155,6 +177,8 @@ async function shuffleAnimation() {
         }
         
         // Update ball position to follow the winning cup (even though it's hidden)
+        // We need to update the ball position at the same time as the cup movement
+        // to ensure the animation is synchronized
         if (ball) {
             const currentWinningCup = cups[winningCupIndex];
             const currentCupLeft = parseInt(currentWinningCup.style.left);
@@ -171,13 +195,19 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Initialize the shell game when the page loads
-document.addEventListener('DOMContentLoaded', function() {
+// This function is called by main.js when the shell game is initialized
+function initShellGame(difficulty) {
+    setGameDifficulty(difficulty);
+    resetShellGame();
+    
+    // Make sure the shuffle button has the event listener
     const startShuffleBtn = document.getElementById('start-shuffle-btn');
     if (startShuffleBtn) {
-        startShuffleBtn.addEventListener('click', startShellShuffle);
+        // Remove any existing listeners to avoid duplicates
+        startShuffleBtn.replaceWith(startShuffleBtn.cloneNode(true));
+        
+        // Get the fresh button and add the event listener
+        const newStartShuffleBtn = document.getElementById('start-shuffle-btn');
+        newStartShuffleBtn.addEventListener('click', startShellShuffle);
     }
-    
-    // Initialize the game
-    resetShellGame();
-});
+}
